@@ -2,8 +2,8 @@ import { useState } from "react";
 import BadBtn from '../assets/images/thumb-down.svg';
 import BadBtnActive from '../assets/images/thumb-down-active.svg'
 
-export default function BadButton() {
-    const [count, setCount] = useState(0);
+export default function BadButton({init}) {
+    const [count, setCount] = useState(init);
     const [disliked, setdisliked] = useState(false);
 
     const handleClick = () => {
