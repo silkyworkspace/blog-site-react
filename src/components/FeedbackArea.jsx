@@ -4,13 +4,16 @@ import CloseBtn from '../assets/images/closeButton.svg';
 import FeedBackForm from "./FeedBackForm";
 
 export default function FeedbackArea() {
+    // モーダル開閉のuseState
     const [isOpen, setIsOpen] = useState(false);
 
+    // モーダルを開くためのuseState更新関数
     const openModal = () => {
         setIsOpen(!isOpen);
         console.log(isOpen);
     }
 
+    // モーダルを閉じるためのuseState更新関数
     const closeModal = () => {
         setIsOpen(false)
     }

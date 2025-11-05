@@ -1,88 +1,57 @@
-import { useState } from "react"
+import { radioList } from './radioList'
+import { checkboxList } from './checkboxList'
+import { useState } from 'react';
 
 export default function FeedBackForm() {
-
-    // ラジオボタンuseState
-    const [selectedAge, setSelectedAge] = useState({
+    const [form, setForm] = useState({
         age: "0-10",
-    });
-
-    // セレクトボックスuseState
-    const [selectedChance, setSelectedChance] = useState({
-        chance: "",
-    });
-
-    // チェックボックスuseState
-    const [selectedInterests, setSelectedInterests] = useState({
+        opportunity: "",
         interests: [],
-    })
-
-    // テキストエリアuseState
-    const [textArea, setTextArea] = useState({
         comment: "",
-    })
+    });
 
-    // ラジオボタンuseState更新関数
-    const handleAgeChange = (e) => {
-        setSelectedAge({
-            ...selectedAge,
-            [e.target.name]: e.target.value
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+
+        setForm((prevForm) => {
+            // チェックボックス（interests）専用の処理
+            if (type === "checkbox") {
+                let newInterests = [...form.interests];
+
+                if (checked) {
+                    // チェックされたら追加
+                    newInterests.push(value);
+                } else {
+                    // 外されたら削除
+                    newInterests = newInterests.filter((v) => v !== value);
+                }
+
+                return { ...form, interests: newInterests };
+            }
+
+            // それ以外（ラジオ・セレクト・テキストなど）
+            return { ...prevForm, [name]: value };
         });
     };
-
-    // セレクトボックスuseState更新関数
-    const handleChanceChange = (e) => {
-        setSelectedChance({
-            ...selectedChance,
-            [e.target.name]: e.target.value
-        });
-    }
-
-    // チェックボックスuseState更新関数
-    const handleInterestsChange = (e) => {
-        const { value, checked } = e.target;
-
-        setSelectedInterests((prev) => {
-            const newInterests = checked
-                ? [...prev.interests, value]// 追加
-                : prev.interests.filter((item) => item !== value);// 削除
-            return { interests: newInterests };
-        });
-    };
-
-    // テキストエリアuseState更新関数
-    const handleTextAreaChandge = (e) => {
-        setTextArea({
-            ...textArea,
-            [e.target.name]: e.target.value
-        });
-    }
-
-    // 送信処理
+    
     const show = () => {
-        console.log(
-            `age: ${selectedAge.age}
-            chance: ${selectedChance.chance}
-            interests: ${selectedInterests.interests}
-            comment: ${textArea.comment}`
-        );
-    }
-
+        // JSオブジェクトをJSON文字列に変換
+        console.log(JSON.stringify(form, null, 2));
+    };
 
     return (
-        <form action="">
+        <form>
             {/* ラジオボタン */}
             <div>
                 <p>Age</p>
-                {["0-10", "10-20", "20-30", "30-40", "40-50"].map((age) => (
-                    <label key={age}>
+                {radioList.map((age, index) => (
+                    <label key={index}>
                         <input
                             type="radio"
                             name="age"
                             value={age}
-                            checked={selectedAge.age === age}
-                            onChange={handleAgeChange}
-                        />
+                            checked={form.age === age}
+                            onChange={handleChange} />
                         <span>{age}</span>
                     </label>
                 ))}
@@ -92,11 +61,10 @@ export default function FeedBackForm() {
             <div>
                 <p>How did you hear about BAMOS DESIGN?</p>
                 <select
-                    name="chance"
-                    id="chance"
-                    value={selectedChance.chance}
-                    onChange={handleChanceChange}
-                >
+                    name="opportunity"
+                    id="opportunity"
+                    value={form.opportunity}
+                    onChange={handleChange}>
                     <option value="" disabled>1つ選択してください</option>
                     <option value="websites">Webサイト</option>
                     <option value="acquaintance">知人</option>
@@ -107,46 +75,19 @@ export default function FeedBackForm() {
             {/* チェックボックス */}
             <div>
                 <p>What is your favorite field or area of interest?</p>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="music"
-                        value="music"
-                        checked={selectedInterests.interests.includes("music")}
-                        onChange={handleInterestsChange}
-                    />
-                    <span>音楽</span>
-                </label>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="art"
-                        value="art"
-                        checked={selectedInterests.interests.includes("art")}
-                        onChange={handleInterestsChange}
-                    />
-                    <span>芸術</span>
-                </label>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="design"
-                        value="design"
-                        checked={selectedInterests.interests.includes("design")}
-                        onChange={handleInterestsChange}
-                    />
-                    <span>デザイン</span>
-                </label>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="program"
-                        value="program"
-                        checked={selectedInterests.interests.includes("program")}
-                        onChange={handleInterestsChange}
-                    />
-                    <span>プログラミング</span>
-                </label>
+
+                {checkboxList.map((item, index) => (
+                    <label key={index}>
+                        <input
+                            type="checkbox"
+                            name={item.value}
+                            value={item.value}
+                            checked={form.interests.includes(item.value)}
+                            onChange={handleChange} />
+                        <span>{item.label}</span>
+                    </label>
+                ))
+                }
             </div>
 
             {/* テキストエリア */}
@@ -155,16 +96,17 @@ export default function FeedBackForm() {
                     <p>What kind of special features or topics would you like to read on BAMOS DESIGN in the future?</p>
                     <textarea
                         name="comment"
+                        value={form.comment}
                         placeholder="ここに記入してください"
-                        value={textArea.comment}
-                        onChange={handleTextAreaChandge}
-                    ></textarea>
+                        onChange={handleChange}>
+                    </textarea>
                 </label>
             </div>
 
             <button type="button" onClick={show}>
                 SUBMIT
             </button>
+
         </form>
-    )
+    );
 }
