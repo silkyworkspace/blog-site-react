@@ -2,8 +2,8 @@ import { useState } from "react";
 import GoodBtn from '../assets/images/thumb-up.svg';
 import GoodBtnActive from '../assets/images/thumb-up-active.svg'
 
-export default function GoodButton() {
-    const [count, setCount] = useState(0);
+export default function GoodButton({init}) {
+    const [count, setCount] = useState(init);
     const [liked, setliked] = useState(false);
 
     const handleClick = () => {
@@ -21,6 +21,5 @@ export default function GoodButton() {
                 <span>{count}</span>
             </label>
         </button>
-
-    )
+    );
 }
