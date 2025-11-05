@@ -2,17 +2,25 @@
     /* カラー */
     --white: #fff;
     --black: #000;
-    --gray: ##d9d9d9;
+    --gray: #d9d9d9;
     --accentColor: #cd3796;
 
     /* フォントファミリー */
     --mainFont: "Lexend", sans-serif;
+
+    /* フォントサイズ */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 13px;
+    --font-size-lg: 15px;
+    --font-size-xl: 24px;
+
+    /* トランジション */
+    --transition-normal: 0.3s ease;
 }
 
-img {
-    width: 100%;
-    height: auto;
-    vertical-align: bottom;
+html {
+    font-size: var(--font-size-sm);
 }
 
 body {
@@ -21,11 +29,26 @@ body {
     font-family: var(--mainFont);
 }
 
+img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
 a {
     color: var(--black);
     text-decoration: none;
 }
 
+li {
+    list-style: none;
+}
+
 button {
     cursor: pointer;
+}
+
+.wrapper {
+    max-width: 994px;
+    margin-inline: auto;
 }
