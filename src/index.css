@@ -1,0 +1,31 @@
+:root {
+    /* カラー */
+    --white: #fff;
+    --black: #000;
+    --gray: ##d9d9d9;
+    --accentColor: #cd3796;
+
+    /* フォントファミリー */
+    --mainFont: "Lexend", sans-serif;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--black);
+    font-family: var(--mainFont);
+}
+
+a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
