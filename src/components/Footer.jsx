@@ -1,5 +1,9 @@
+import pinkLogoImg from '../assets/images/logo_pink.svg'
+
 export default function Footer() {
     return (
-        <div>Footer</div>
+        <footer>
+            <p><img src={pinkLogoImg} alt="bamos" /></p>
+        </footer>
     )
 }

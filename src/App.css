@@ -1,5 +1,5 @@
 /****** ヘッダー ******/
-header .wrapper{
+header .wrapper {
     height: 36px;
     display: flex;
     justify-content: space-between;
@@ -11,11 +11,6 @@ header h1 {
     display: grid;
     place-items: center;
 }
-
-.headerLogo {
-    width: 193px;
-}
-
 
 /****** ハンバーガーメニュー ******/
 .hamburger {
@@ -90,12 +85,28 @@ header h1 {
 .heroAreaContainer {
     height: 88dvh;
     background: url(../src/assets/images/heroImg.webp) no-repeat 50% 50% / cover;
+    display: grid;
+    place-items: center;
+    margin-block-end: 60px;
+}
+
+.heroLogo {
+    background-color: var(--accentColor);
+    /* width: 213px; */
+    width: clamp(193px, 35vw, 329px);
+    padding: 10px;
 }
 
 /****** useStateを使ったモーダル ******/
 .modalBtn {
+    display: block;
+    font-size: var( --font-size-lg);
     background-color: var(--black);
     color: var(--white);
+    border-radius: 20px;
+    width: 146px;
+    padding-block: 8px;
+    margin-inline: auto;
 }
 
 .closeBtn {
@@ -121,4 +132,16 @@ header h1 {
     border: 1px solid #fff;
     border-radius: 4px;
     padding: 2rem 1.4rem;
+}
+
+/****** フッター ******/
+footer {
+    background-color: var(--black);
+    padding-block: 18px;
+
+}
+
+footer p {
+    width: 193px;
+    margin-inline: auto;
 }
