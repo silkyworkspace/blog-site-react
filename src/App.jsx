@@ -2,6 +2,7 @@ import './App.css'
 import Footer from './components/Footer'
 import MainArea from './components/MainArea'
 import LogoImg from './assets/images/logo_black.svg'
+import LogoImgWhite from './assets/images/logo_white.svg'
 import { menuList } from './components/menuList'
 import { useState } from 'react'
 
@@ -19,18 +20,20 @@ function App() {
     <>
       <header>
         <div className="wrapper">
-          <h1 className='headerLogo'><img src={LogoImg} alt="bamos-design" /></h1>
+          <h1 className='headerLogo'>
+            <img src={isMenuOpen ? LogoImgWhite : LogoImg} alt="bamos-design" />
+          </h1>
 
           <button
             className={`hamburger ${isMenuOpen ? "active" : ""}`}
             onClick={hamToggleClick}>
-              <span className='plus'>
-                <span></span>
-                <span></span>
-              </span>
-              <span className='menuText'>
-                {isMenuOpen ? "CLOSE" : "MENU"}
-              </span>
+            <span className='plus'>
+              <span></span>
+              <span></span>
+            </span>
+            <span className='menuText'>
+              {isMenuOpen ? "CLOSE" : "MENU"}
+            </span>
           </button>
         </div>
         {/* ドロワーメニュー */}

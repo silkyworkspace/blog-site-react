@@ -36,6 +36,7 @@ header h1 {
     width: 20px;
     height: 4px;
     transition: all .3s;
+    transform-origin: center;
 }
 
 .hamburger .plus span:first-child {
@@ -48,16 +49,23 @@ header h1 {
 
 .hamburger.active .plus span:first-child {
     rotate: 45deg;
+    background-color: var(--white);
 }
 
 .hamburger.active .plus span:last-child {
     transform: translate(3px, -3px);
     rotate: -45deg;
+    background-color: var(--white);
 }
 
 .hamburger .menuText {
     font-size: 12px;
 }
+
+.hamburger.active .menuText {
+    color: var(--white);
+}
+
 
 /****** ドロワーメニュー ******/
 #gNav {
@@ -66,10 +74,10 @@ header h1 {
     position: fixed;
     left: 0;
     top: 0;
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(0, 0, 0, .8);
     width: 100%;
     height: 56vh;
-    transition: opacity var(--transition-normal),transform var(--transition-normal);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
     transform: translateY(-100%);
     opacity: 0;
 }
@@ -89,6 +97,9 @@ header h1 {
     transform: translate(-50%, -50%);
 }
 
+.gNavMenu a {
+    color: var(--white);
+}
 
 /****** ヒーローエリア ******/
 .heroAreaContainer {
@@ -267,7 +278,8 @@ footer p {
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
+
     /****** ドロワーメニュー ******/
     #gNav {
         height: 24vh;
