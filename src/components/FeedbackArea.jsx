@@ -33,14 +33,16 @@ export default function FeedbackArea() {
                 {isOpen && (
                     <div className="modalOverlay" onClick={closeModal}>
                         <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-                            <div><img src={ModalImg} alt="" /></div>
-                            <h3>FEEDBACK</h3>
-                            <p>
-                                <span>Thank you for visiting BAMOS DESIGN.</span>
-                                <span>Please take a moment to complete our</span>
-                                <span>survey to help us improve our services.</span>
-                            </p>
-                            <FeedBackForm />
+                            <div className="modalCoverImg"><img src={ModalImg} alt="" /></div>
+                            <div className="modalContentInner">
+                                <h3>FEEDBACK</h3>
+                                <p>
+                                    <span>Thank you for visiting BAMOS DESIGN.</span>
+                                    <span>Please take a moment to complete our</span>
+                                    <span>survey to help us improve our services.</span>
+                                </p>
+                                <FeedBackForm />
+                            </div>
                             <button
                                 className="closeBtn"
                                 onClick={closeModal}

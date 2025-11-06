@@ -1,6 +1,7 @@
 import { radioList } from './radioList'
 import { checkboxList } from './checkboxList'
 import { useState } from 'react';
+import SubmitButton from './submitButton';
 
 export default function FeedBackForm() {
     const [form, setForm] = useState({
@@ -33,28 +34,30 @@ export default function FeedBackForm() {
             return { ...prevForm, [name]: value };
         });
     };
-    
+
     const show = () => {
         // JSオブジェクトをJSON文字列に変換
         console.log(JSON.stringify(form, null, 2));
     };
 
     return (
-        <form>
+        <form className='modalForm'>
             {/* ラジオボタン */}
             <div>
                 <p>Age</p>
-                {radioList.map((age, index) => (
-                    <label key={index}>
-                        <input
-                            type="radio"
-                            name="age"
-                            value={age}
-                            checked={form.age === age}
-                            onChange={handleChange} />
-                        <span>{age}</span>
-                    </label>
-                ))}
+                <div className='radioContent'>
+                    {radioList.map((age, index) => (
+                        <label key={index}>
+                            <input
+                                type="radio"
+                                name="age"
+                                value={age}
+                                checked={form.age === age}
+                                onChange={handleChange} />
+                            <span>{age}</span>
+                        </label>
+                    ))}
+                </div>
             </div>
 
             {/* セレクトボックス */}
@@ -65,7 +68,7 @@ export default function FeedBackForm() {
                     id="opportunity"
                     value={form.opportunity}
                     onChange={handleChange}>
-                    <option value="" disabled>1つ選択してください</option>
+                    <option value="" disabled> -- 1つ選択してください -- </option>
                     <option value="websites">Webサイト</option>
                     <option value="acquaintance">知人</option>
                     <option value="others">その他</option>
@@ -76,18 +79,20 @@ export default function FeedBackForm() {
             <div>
                 <p>What is your favorite field or area of interest?</p>
 
-                {checkboxList.map((item, index) => (
-                    <label key={index}>
-                        <input
-                            type="checkbox"
-                            name={item.value}
-                            value={item.value}
-                            checked={form.interests.includes(item.value)}
-                            onChange={handleChange} />
-                        <span>{item.label}</span>
-                    </label>
-                ))
-                }
+                <div className='checkboxContent'>
+                    {checkboxList.map((item, index) => (
+                        <label key={index}>
+                            <input
+                                type="checkbox"
+                                name={item.value}
+                                value={item.value}
+                                checked={form.interests.includes(item.value)}
+                                onChange={handleChange} />
+                            <span>{item.label}</span>
+                        </label>
+                    ))
+                    }
+                </div>
             </div>
 
             {/* テキストエリア */}
@@ -103,9 +108,11 @@ export default function FeedBackForm() {
                 </label>
             </div>
 
-            <button type="button" onClick={show}>
+            <SubmitButton show={show} />
+
+            {/* <button type="button" onClick={show}>
                 SUBMIT
-            </button>
+            </button> */}
 
         </form>
     );
