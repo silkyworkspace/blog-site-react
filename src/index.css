@@ -62,6 +62,10 @@ header .wrapper {
     padding-inline: 16px;
 }
 
+.mainWrapper {
+    padding-block-start: 52px;
+}
+
 h2 {
     font-size: var(--font-size-xl);
     border-top: 1px solid var(--black);
