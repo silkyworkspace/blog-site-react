@@ -4,7 +4,7 @@ import MainArea from './components/MainArea'
 import LogoImg from './assets/images/logo_black.svg'
 import LogoImgWhite from './assets/images/logo_white.svg'
 import { menuList } from './components/menuList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   // ハンバーガーメニューのstate
@@ -15,6 +15,20 @@ function App() {
     setIsMenuOpen(!isMenuOpen);
     console.log({ isMenuOpen })
   }
+
+  useEffect(() => {
+    // メニューが開いている間はスクロールを禁止
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // クリーンアップ（コンポーネントがアンマウントされたとき用）
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
