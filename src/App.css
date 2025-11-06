@@ -1,6 +1,9 @@
 /****** ヘッダー ******/
 header {
     height: 52px;
+    position: fixed;
+    width: 100%;
+    background-color: var(--white);
 }
 
 header h1 {
@@ -249,7 +252,7 @@ footer p {
 
     /****** ヒーローエリア ******/
     .heroAreaContainer {
-        height: 47dvh;
+        height: 70dvh;
     }
 
     /****** カードエリア ******/
