@@ -101,6 +101,7 @@ header h1 {
 
 .cardAreaLists img {
     aspect-ratio: 360 / 270;
+    object-fit: cover;
 }
 
 .cardItemBottom {
@@ -266,5 +267,9 @@ footer p {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 16px;
+    }
+
+    .cardAreaLists img {
+        aspect-ratio: 320 / 240;
     }
 }
