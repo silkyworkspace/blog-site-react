@@ -1,10 +1,6 @@
 /****** ヘッダー ******/
-header .wrapper {
-    height: 36px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-inline: 16px;
+header {
+    height: 52px;
 }
 
 header h1 {
@@ -45,7 +41,7 @@ header h1 {
 }
 
 #gNav {
-    background-color: rgba(1, 1, 1, .7);
+    background-color: rgba(1, 1, 1, 0.7);
     height: 100dvh;
     position: fixed;
     top: 0;
@@ -92,25 +88,66 @@ header h1 {
 
 .heroLogo {
     background-color: var(--accentColor);
-    /* width: 213px; */
     width: clamp(193px, 35vw, 329px);
     padding: 10px;
+}
+
+/****** カードエリア ******/
+.cardAreaLists {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.cardAreaLists img {
+    aspect-ratio: 360 / 270;
+}
+
+.cardItemBottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.goodbadBtnArea {
+    display: flex;
+    gap: 16px;
+}
+
+.cardItemText p:first-child {
+    font-weight: 500;
+    margin-block-end: 8px;
+}
+
+.cardItemText p:first-child span:first-child {
+    margin-inline-end: 8px;
+}
+
+.cardItemText p:last-child {
+    font-size: 12px;
 }
 
 /****** useStateを使ったモーダル ******/
 .modalBtn {
     display: block;
-    font-size: var( --font-size-lg);
+    font-size: var(--font-size-lg);
     background-color: var(--black);
     color: var(--white);
     border-radius: 20px;
     width: 146px;
     padding-block: 8px;
     margin-inline: auto;
+    margin-block-start: 24px;
 }
 
 .closeBtn {
     background-color: var(--gray);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
 }
 
 .modalOverlay {
@@ -131,17 +168,103 @@ header h1 {
     background-color: var(--white);
     border: 1px solid #fff;
     border-radius: 4px;
-    padding: 2rem 1.4rem;
+    position: relative;
+    width: 90%;
+}
+
+.modalCoverImg img {
+    height: 116px;
+    object-fit: cover;
+}
+
+.modalContentInner {
+    padding: 0 16px 24px;
+}
+
+.modalContentInner,
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.modalForm {
+    letter-spacing: 0.02em;
+}
+
+.modalForm p {
+    margin-block-end: 16px;
+}
+
+/****** フォーム ******/
+.radioContent {
+    display: grid;
+    grid-template-columns: 76px 76px 120px;
+    grid-template-rows: auto auto;
+    gap: 13px;
+}
+
+.checkboxContent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.submitBtn {
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    background-color: var(--black);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 50px;
 }
 
 /****** フッター ******/
 footer {
     background-color: var(--black);
     padding-block: 18px;
-
 }
 
 footer p {
     width: 193px;
     margin-inline: auto;
+}
+
+/************* 
+レスポンシブ
+**************************/
+
+@media (min-width: 768px) {
+    /****** ヒーローエリア ******/
+    .heroAreaContainer {
+        height: 47dvh;
+    }
+
+    /****** カードエリア ******/
+    .cardAreaLists {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .modalContent {
+        width: 476px;
+    }
+}
+
+@media (min-width: 1440px) {
+    /****** ヒーローエリア ******/
+    .heroAreaContainer {
+        height: 612px;
+        max-width: 1440px;
+        margin-inline: auto;
+        background: url(../src/assets/images/heroImg.webp) no-repeat 50% 50% / cover;
+    }
+
+    /****** カードエリア ******/
+    .cardAreaLists {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+    }
 }

@@ -5,8 +5,10 @@ import FeedbackArea from "./FeedbackArea";
 export default function MainArea() {
     return (
         <main>
-            <HeroArea />
-            <BlogArea />
+            <div className="mainWrapper">
+                <HeroArea />
+                <BlogArea />
+            </div>
             <FeedbackArea />
         </main>
     )

@@ -3,10 +3,10 @@ import Card from './Card';
 
 export default function CardArea() {
     return (
-        <div>
-            <ul>
+        <div className='cardArea'>
+            <ul className='cardAreaLists'>
                 {bamosList.map((item, index) => (
-                    <Card key={index} item={item}/>
+                    <Card key={index} item={item} />
                 ))}
             </ul>
         </div>
