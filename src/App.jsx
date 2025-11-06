@@ -24,11 +24,16 @@ function App() {
           <button
             className={`hamburger ${isMenuOpen ? "active" : ""}`}
             onClick={hamToggleClick}>
-            <span></span>
-            <span></span>
-            <span></span>
+              <span className='plus'>
+                <span></span>
+                <span></span>
+              </span>
+              <span className='menuText'>
+                {isMenuOpen ? "CLOSE" : "MENU"}
+              </span>
           </button>
         </div>
+        {/* ドロワーメニュー */}
         <nav id='gNav' className={`gNav ${isMenuOpen ? "open" : ""}`}>
           <ul className='gNavMenu'>
             {menuList.map((item) => {
