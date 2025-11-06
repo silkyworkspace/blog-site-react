@@ -6,76 +6,86 @@ header {
 header h1 {
     display: grid;
     place-items: center;
+    position: relative;
+    z-index: 9999;
 }
 
 /****** ハンバーガーメニュー ******/
 .hamburger {
-    width: 25px;
-    height: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4px;
+    width: 40px;
+    height: 24px;
+    transform: translateY(4px);
     position: relative;
-    z-index: 999;
+    z-index: 9999;
 }
 
-.hamburger span {
+.hamburger .plus {
     display: block;
-    width: 25px;
+}
+
+.hamburger .plus span {
+    display: block;
+    background-color: var(--black);
+    width: 20px;
     height: 4px;
-    background-color: var(--gray);
+    transition: all .3s;
 }
 
-.hamburger.active span:first-child {
-    transform: rotate(45deg) translate(1px, -4px);
-    transform-origin: left top;
+.hamburger .plus span:first-child {
+    rotate: 90deg;
 }
 
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
+.hamburger .plus span:last-child {
+    transform: translateY(-4px);
 }
 
-.hamburger.active span:last-child {
-    transform: rotate(-45deg) translate(4px, 1px);
-    transform-origin: left bottom;
+.hamburger.active .plus span:first-child {
+    rotate: 45deg;
 }
 
+.hamburger.active .plus span:last-child {
+    transform: translate(3px, -3px);
+    rotate: -45deg;
+}
+
+.hamburger .menuText {
+    font-size: 12px;
+}
+
+/****** ドロワーメニュー ******/
 #gNav {
-    background-color: rgba(1, 1, 1, 0.7);
-    height: 100dvh;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
     position: fixed;
+    left: 0;
     top: 0;
-    opacity: 0;
-    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, .8);
     width: 100%;
-    transition: opacity var(--transition-normal), transform var(--transition-normal);
-    pointer-events: none;
+    height: 56vh;
+    transition: opacity var(--transition-normal),transform var(--transition-normal);
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 #gNav.open {
-    opacity: 1;
     transform: translateY(0);
-    pointer-events: auto;
+    opacity: 1;
 }
 
-#gNav .gNavMenu {
+.gNavMenu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    height: 100dvh;
+    gap: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#gNav .gNavMenu a {
-    color: var(--white);
-    transition: var(--transition-normal);
-}
-
-#gNav .gNavMenu a:hover {
-    color: var(--accentColor);
-}
 
 /****** ヒーローエリア ******/
 .heroAreaContainer {
@@ -236,6 +246,7 @@ footer p {
 **************************/
 
 @media (min-width: 768px) {
+
     /****** ヒーローエリア ******/
     .heroAreaContainer {
         height: 47dvh;
@@ -254,6 +265,23 @@ footer p {
 }
 
 @media (min-width: 1440px) {
+    /****** ドロワーメニュー ******/
+    #gNav {
+        height: 24vh;
+    }
+
+    .gNavMenu {
+        flex-direction: row;
+    }
+
+    .gNavMenu a {
+        transition: var(--transition-quick);
+    }
+
+    .gNavMenu a:hover {
+        color: var(--accentColor);
+    }
+
     /****** ヒーローエリア ******/
     .heroAreaContainer {
         height: 612px;
