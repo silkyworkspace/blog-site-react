@@ -1,7 +1,7 @@
 import { radioList } from './radioList'
 import { checkboxList } from './checkboxList'
 import { useState } from 'react';
-import SubmitButton from './submitButton';
+import SubmitButton from './SubmitButton';
 
 export default function FeedBackForm() {
     const [form, setForm] = useState({
